@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Chip, 
   Paper, 
   Typography, 
   LinearProgress,
@@ -8,13 +7,17 @@ import {
   Box,
   Button
 } from '@mui/material';
+import Chip from '@mui/material/Chip';
 import { DataGrid } from '@mui/x-data-grid';
-
+import StudentDetails from './StudentDetails';
+import AverageCalculator from './AverageCalculator';
 
 const StudentList = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedStudentId, setSelectedStudentId] = useState(null);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   const fetchStudents = async () => {
     try {
@@ -40,10 +43,8 @@ const StudentList = () => {
         throw new Error('Invalid data format received from server');
       }
 
-      // Transform data to ensure consistent field names
       const transformedData = data.map(student => ({
         ...student,
-        // Handle case differences in field names
         First_Name: student.First_Name || student.first_Name || '',
         Last_Name: student.Last_Name || student.last_Name || ''
       }));
@@ -70,12 +71,10 @@ const StudentList = () => {
   const calculateAverage = (student) => {
     if (!student) return 0;
     
-    // Use either the pre-calculated average or calculate it
     if (student.average !== undefined) {
       return student.average;
     }
     
-    // Safely get grades with fallback to 0
     const grade1 = Number(student.Module1_Grade) || 0;
     const grade2 = Number(student.Module2_Grade) || 0;
     const grade3 = Number(student.Module3_Grade) || 0;
@@ -91,6 +90,18 @@ const StudentList = () => {
     if (average >= 60) return "Merit";
     if (average >= 40) return "Pass";
     return "Fail";
+  };
+
+  const handleViewDetails = (studentId) => {
+    setSelectedStudentId(studentId);
+  };
+
+  const handleBackFromDetails = () => {
+    setSelectedStudentId(null);
+  };
+
+  const toggleCalculator = () => {
+    setShowCalculator(!showCalculator);
   };
 
   const columns = [
@@ -137,6 +148,20 @@ const StudentList = () => {
       headerName: 'Date of Birth',
       width: 150,
       valueGetter: (params) => params || 'N/A'
+    },
+    {
+      field: 'actions',
+      headerName: 'Actions',
+      width: 150,
+      renderCell: (params) => (
+        <Button
+          variant="outlined"
+          size="small"
+          onClick={() => handleViewDetails(params.row.studentId)}
+        >
+          View Details
+        </Button>
+      )
     }
   ];
 
@@ -157,11 +182,40 @@ const StudentList = () => {
     );
   }
 
+  if (selectedStudentId) {
+    return (
+      <StudentDetails
+        studentId={selectedStudentId}
+        students={students}
+        onBack={handleBackFromDetails}
+        calculateAverage={calculateAverage}
+        getClassification={getClassification}
+      />
+    );
+  }
+
+  if (showCalculator) {
+    return (
+      <AverageCalculator
+        students={students}
+        onBack={toggleCalculator}
+      />
+    );
+  }
+
   return (
     <Paper elevation={3} sx={{ p: 2, height: 700 }}>
-      <Typography variant="h5" component="h2" gutterBottom>
-        Student Records
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+        <Typography variant="h5" component="h2">
+          Student Records
+        </Typography>
+        <Button
+          variant="contained"
+          onClick={toggleCalculator}
+        >
+          Open Calculator
+        </Button>
+      </Box>
       <DataGrid
         rows={students}
         columns={columns}
