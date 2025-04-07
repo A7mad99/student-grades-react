@@ -9,7 +9,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Adjust to your frontend URL
+  origin: process.env.FRONTEND_URL || 'http://localhost:3000', // Adjust to frontend URL
   credentials: true
 }));
 app.use(express.json()); // Parse JSON bodies
@@ -20,7 +20,7 @@ const connectDB = async () => {
     await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 5000 // Timeout after 5s instead of 30s
+      serverSelectionTimeoutMS: 5000 // Timeout after 5s 
     });
     console.log('✅ MongoDB connected successfully');
     
@@ -80,7 +80,7 @@ const startServer = async () => {
 
 startServer();
 
-// Graceful shutdown
+// shutdown
 process.on('SIGINT', async () => {
   await mongoose.connection.close();
   console.log('MongoDB connection closed due to app termination');

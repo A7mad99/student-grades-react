@@ -31,10 +31,9 @@ router.get('/', async (req, res) => {
       console.warn('No students in DB, returning demo data');
       students = DEFAULT_STUDENTS;
     }
-    // 1. Fetch from MongoDB
-    //const students = await Student.find().lean();
+ 
     
-    // 2. Transform data for frontend
+    //Transform data for frontend
     const formattedStudents = students.map(student => {
       const average = (
         student.Module1_Grade + 
@@ -43,8 +42,8 @@ router.get('/', async (req, res) => {
       ) / 3;
 
       return {
-        // Required fields for DataGrid
-        id: student.studentId, // Essential for Material-UI DataGrid
+     
+        id: student.studentId, 
         studentId: student.studentId,
         
         // Student information
@@ -57,13 +56,13 @@ router.get('/', async (req, res) => {
         Module2_Grade: student.Module2_Grade,
         Module3_Grade: student.Module3_Grade,
         
-        // Calculated fields (optional)
+        // Calculated fields 
         average: parseFloat(average.toFixed(1)),
         classification: getClassification(average)
       };
     });
 
-    // 3. Send properly formatted response
+    // Send properly formatted response
     res.json(formattedStudents);
 
   } catch (err) {
@@ -95,7 +94,7 @@ router.get('/:id', async (req, res) => {
     ) / 3;
 
     res.json({
-      // Required for DataGrid selection
+      
       id: student.studentId,
       studentId: student.studentId,
       

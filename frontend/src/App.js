@@ -23,7 +23,7 @@ function App() {
         
         // Critical transformation for DataGrid
         const formattedData = data.map(student => ({
-          id: student.studentId, // Required by DataGrid
+          id: student.studentId, 
           ...student
         }));
         
