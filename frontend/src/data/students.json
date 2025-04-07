@@ -1,0 +1,92 @@
+[
+    {
+        "studentId": "123456S",
+        "First_Name": "Fred",
+        "Last_Name": "Smith",
+        "DOB": "15/04/1996",
+        "Module1_Grade": 40.0,
+        "Module2_Grade": 60.0,
+        "Module3_Grade": 75.0
+    },
+    {
+        "studentId": "234567A",
+        "First_Name": "Alice",
+        "Last_Name": "Johnson",
+        "DOB": "22/08/1997",
+        "Module1_Grade": 85.0,
+        "Module2_Grade": 78.0,
+        "Module3_Grade": 92.0
+    },
+    {
+        "studentId": "345678B",
+        "First_Name": "Bob",
+        "Last_Name": "Williams",
+        "DOB": "03/12/1995",
+        "Module1_Grade": 35.0,
+        "Module2_Grade": 45.0,
+        "Module3_Grade": 50.0
+    },
+    {
+        "studentId": "456789C",
+        "First_Name": "Charlie",
+        "Last_Name": "Brown",
+        "DOB": "30/05/1998",
+        "Module1_Grade": 60.0,
+        "Module2_Grade": 65.0,
+        "Module3_Grade": 70.0
+    },
+    {
+        "studentId": "567890D",
+        "First_Name": "Diana",
+        "Last_Name": "Miller",
+        "DOB": "14/02/1996",
+        "Module1_Grade": 72.0,
+        "Module2_Grade": 68.0,
+        "Module3_Grade": 75.0
+    },
+    {
+        "studentId": "678901E",
+        "First_Name": "Ethan",
+        "Last_Name": "Davis",
+        "DOB": "19/07/1997",
+        "Module1_Grade": 55.0,
+        "Module2_Grade": 58.0,
+        "Module3_Grade": 62.0
+    },
+    {
+        "studentId": "789012F",
+        "First_Name": "Fiona",
+        "Last_Name": "Garcia",
+        "DOB": "08/11/1995",
+        "Module1_Grade": 90.0,
+        "Module2_Grade": 92.0,
+        "Module3_Grade": 88.0
+    },
+    {
+        "studentId": "890123G",
+        "First_Name": "George",
+        "Last_Name": "Martinez",
+        "DOB": "25/01/1999",
+        "Module1_Grade": 42.0,
+        "Module2_Grade": 38.0,
+        "Module3_Grade": 45.0
+    },
+    {
+        "studentId": "901234H",
+        "First_Name": "Hannah",
+        "Last_Name": "Lee",
+        "DOB": "12/09/1996",
+        "Module1_Grade": 68.0,
+        "Module2_Grade": 72.0,
+        "Module3_Grade": 75.0
+    },
+    {
+        "studentId": "012345I",
+        "First_Name": "Ian",
+        "Last_Name": "Taylor",
+        "DOB": "05/06/1997",
+        "Module1_Grade": 50.0,
+        "Module2_Grade": 55.0,
+        "Module3_Grade": 60.0
+    }
+]
